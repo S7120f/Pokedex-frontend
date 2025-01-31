@@ -1,43 +1,46 @@
-# Pokedex-frontend - Pokemon Finder
+# Pokédex Frontend
 
-En webbapplikation för att söka efter Pokemon med hjälp av PokeAPI 
+En webbapplikation för att söka, fånga och hantera Pokémon med hjälp av PokéAPI och ett eget backend-API.
 
-## Beskrivning
+## Förutsättningar
 
-Detta projekt är en del av Pokedex-applikation. För närvarande kan användaren: 
-- Söka efter Pokemon genom att ange namn
-- Se grundläggande information om Pokemon: 
-    - Namn
-    - Bild
-    - Pokedex-nummer 
-    - Pokemon-typer
+- En webbläsare
+- En lokal webbserver (t.ex. Live Server i VS Code)
+- Backend-API:et måste vara igång på `localhost:8080`
 
+## Installation och start
 
+1. Klona projektet till din dator
+2. Öppna projektet i VS Code
+3. Installera tillägget "Live Server" om du inte redan har det
+4. Högerklicka på `index.html` och välj "Open with Live Server"
+   - Sidan bör öppnas på `http://127.0.0.1:5500`
 
-## Projektstruktur 
-- HTML
-- JavaScript
-- CSS
-- [PokeAPI](https://pokeapi.co/) för Pokemon-data
+## Funktioner
 
-## Körning 
-Öppna `index.html` i en webbläsare
-   - Alternativt använd en lokal server som Live Server i VS Code
+- Sök efter Pokémon med namn
+- Fånga Pokémon och spara i din egen Pokédex
+- Visa alla fångade Pokémon
+- Lägg till, uppdatera och ta bort anteckningar för varje fångad Pokémon
+- Ta bort Pokémon från din samling
+
+## Projektstruktur
+js/
+│ |----api/
+│ │  databaseApi.js # Hantering av anrop till backend
+│ │  pokeApi.js # Hantering av anrop till PokéAPI
+│ |----components/
+│ │  |pokedex.js # Hantering av Pokédex-vyn
+│ │  |pokemonDisplay.js # Visning av sökresultat
+|
+|-|---app.js # Huvudapplikation
+|
+│ 
+|----index.html
 
 ## Användning
 
-1. Skriv in namnet på en Pokemon i sökfältet
-2. Klicka på "Sök"-knappen
-3. Information om den sökta Pokemon visas på skärmen
-
-## Framtida funktioner
-
-- Möjlighet att fånga Pokemon
-- Spara fångade Pokemon
-- Visa lista över fångade Pokemon
-- Lägga till och redigera anteckningar för fångade Pokemon
-
-## API-referens
-
-Projektet använder [PokeAPI](https://pokeapi.co/) för att hämta Pokemon-data.
-Exempel på API-anrop:
+1. Använd sökfältet för att söka efter en Pokémon
+2. Klicka på "Fånga" för att lägga till Pokémon i din samling
+3. Använd "Visa Pokedex" för att se dina fångade Pokémon
+4. Hantera anteckningar och ta bort Pokémon via knapparna i Pokédex-vyn

@@ -2,6 +2,12 @@
 const pokemonInput = document.getElementById("pokemonInput");
 const searchBtn = document.getElementById("searchBtn");
 const resultDiv = document.getElementById("result");
+const pokedexDiv = document.getElementById("pokedexDiv");
+const showPokedex = document.getElementById("showPokedex");
+
+
+// lägg till en variabel för att hålla koll på om pokedex är öppen eller stängd
+let isPokedexOpen = false;
 
 // lägg till event listener på knappen
 searchBtn.addEventListener("click", () => {
@@ -11,39 +17,22 @@ searchBtn.addEventListener("click", () => {
   fetchData(pokemonName);
 });
 
-async function fetchData(pokemonName) {
-  try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-    );
-
-    if (!response.ok) {
-      throw new Error("Could not fetch resource");
-    }
-
-    const data = await response.json();
-    console.log(data);
-
-    //visa data på sidan
-    displayPokemon(data);
-
-    // resultDiv.innerHTML += `<h1>${data.name}</h1>`;
-  } catch (error) {
-    console.error(error);
-    resultDiv.innerHTML ="Pokemon not found!"
-  }
+showPokedex.addEventListener("click", () => {
+  if (!isPokedexOpen) {
+    // om pokedex är stängd, öppna den
+    console.log("Öppnar pokedex");
+    showPokedex.innerText = "Stäng Pokedex";
+    fetchIntApi();
+    isPokedexOpen = true;
+} else {
+    // om pokedex är öppen
+    console.log("Stäng Pokedex");
+    showPokedex.innerText = "Visa pokedex";
+    pokedexDiv.innerHTML = "";
+    isPokedexOpen = false;
 }
+});
 
-function displayPokemon(pokemon) {
+// .then(() => fetchIntApi()) // uppdaterar listan efter borttagning
+// .catch(error => console(`Fel vid radering`, error));
 
-    // mappar types pga av det är en array
-    const types = pokemon.types.map(type => type.type.name).join(', ');
-
-    resultDiv.innerHTML = `
-    <h2>Namn: ${pokemon.name.toUpperCase()}</h2>
-    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-    <p>Pokedex-nummer: #${pokemon.id}</P>
-    <p>Type: ${types}</p>
-
-    `;
-}
